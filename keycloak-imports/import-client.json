@@ -1,0 +1,115 @@
+{
+  "realm": "master",
+  "enabled": true,
+  "requiredCredentials": [
+    "password"
+  ],
+  "users": [
+    {
+      "username": "test-signer",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "test-signer"
+        }
+      ],
+      "realmRoles": [
+        "signer"
+      ]
+    }
+  ],
+  "scopeMappings": [
+    {
+      "client": "content-trust",
+      "clientScope": "urn:gravitate-health:signing:sign",
+      "roles": [
+        "signer"
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "content-trust",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "content-trust",
+      "redirectUris": [],
+      "webOrigins": [],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "authorizationServicesEnabled": true,
+      "publicClient": false,
+      "frontchannelLogout": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "post.logout.redirect.uris": "+"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "defaultClientScopes": [
+        "urn:gravitate-health:signing:sign"
+      ],
+      "authorizationSettings": {
+        "allowRemoteResourceManagement": true,
+        "policyEnforcementMode": "ENFORCING",
+        "resources": [
+          {
+            "name": "Sign Resource",
+            "type": "urn:content-trust:signing:resource",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "_id": "06065bd8-a75c-4e45-8ac3-00100a6b3e39",
+            "uris": [
+              "/sign/*"
+            ],
+            "scopes": [
+              {
+                "name": "urn:content-trust:signing:sign"
+              }
+            ]
+          }
+        ],
+        "policies": [
+          {
+            "id": "f9116ce9-2368-46a5-8a69-bc29a99b3e0e",
+            "name": "Signer Policy",
+            "description": "Defines that only users with role 'signer' can sign resources",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"signer\",\"required\":true}]"
+            }
+          },
+          {
+            "id": "e061d20c-8faa-4bf5-9e58-26e043ecf536",
+            "name": "Sign Resource Permission",
+            "description": "A policy that defines access to signing resources",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Sign Resource\"]",
+              "applyPolicies": "[\"Signer Policy\"]"
+            }
+          }
+        ],
+        "scopes": [
+          {
+            "id": "a069f638-3e41-40bd-acc6-d4cd2cc0ee35",
+            "name": "urn:content-trust:signing:sign"
+          }
+        ],
+        "decisionStrategy": "UNANIMOUS"
+      }
+    }
+  ]
+}

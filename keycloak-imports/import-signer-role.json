@@ -1,0 +1,14 @@
+{
+  "realm": "master",
+  "roles": {
+    "realm": [
+      {
+        "name": "signer",
+        "description": "Signing privileges",
+        "composite": false,
+        "clientRole": false,
+        "attributes": {}
+      }
+    ]
+  }
+}
