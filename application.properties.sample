@@ -1,0 +1,9 @@
+# mandatory
+ksi.signer.url=
+ksi.signer.userId=
+ksi.signer.secret=
+spring.security.oauth2.resourceserver.jwt.issuer-uri=
+
+# optional
+# default value is urn:gravitate-health:signing:sign
+# keycloak.signing-scope=

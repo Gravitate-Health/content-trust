@@ -1,0 +1,92 @@
+{
+  "resourceType": "Provenance",
+  "id": "example",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from XDS managed CDA Referral received 26-June as authorized by a referenced Consent.</div>"
+  },
+  "target": [
+    {
+      "reference": "Procedure/example/_history/1"
+    }
+  ],
+  "occurredPeriod": {
+    "start": "2015-06-27",
+    "end": "2015-06-28"
+  },
+  "recorded": "2015-06-27T08:39:24+10:00",
+  "policy": [
+    "http://acme.com/fhir/Consent/25"
+  ],
+  "location": {
+    "reference": "Location/1"
+  },
+  "reason": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "3457005",
+          "display": "Referral"
+        }
+      ]
+    }
+  ],
+  "agent": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+            "code": "AUT"
+          }
+        ]
+      },
+      "who": {
+        "reference": "Practitioner/xcda-author"
+      }
+    },
+    {
+      "id": "a1",
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+            "code": "DEV"
+          }
+        ]
+      },
+      "who": {
+        "reference": "Device/software"
+      }
+    }
+  ],
+  "entity": [
+    {
+      "role": "source",
+      "what": {
+        "reference": "DocumentReference/example",
+        "display": "CDA Document in XDS repository"
+      }
+    }
+  ],
+  "signature": [
+    {
+      "type": [
+        {
+          "system": "Content-Trust",
+          "version": "1.0",
+          "code": "KSI",
+          "display": "KSI Signature",
+          "userSelected": false
+        }
+      ],
+      "when": "2023-10-10T10:58:37.113682Z",
+      "who": null,
+      "onBehalfOf": null,
+      "targetFormat": null,
+      "sigFormat": "https://guardtime.github.io/ksi-java-sdk/com/guardtime/ksi/unisignature/KSISignature.html",
+      "data": "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"
+    }
+  ]
+}

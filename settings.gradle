@@ -1,0 +1,28 @@
+rootProject.name = 'contenttrust'
+include 'ct-verifier'
+include 'ct-signer'
+include 'ct-app'
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            version('ksi', '4.18.217')
+            library('jackson-databind', 'com.fasterxml.jackson.core', 'jackson-databind').version('2.15.2')
+            library('ksi-api', 'com.guardtime', 'ksi-api').versionRef('ksi')
+            library('ksi-blocksigner', 'com.guardtime', 'ksi-blocksigner').versionRef('ksi')
+
+            // test dependencies
+            version('junit-jupiter', '5.9.3')
+            library('junit-jupiter-api', 'org.junit.jupiter', 'junit-jupiter-api').versionRef('junit-jupiter')
+            library('junit-jupiter-engine', 'org.junit.jupiter', 'junit-jupiter-engine').versionRef('junit-jupiter')
+            library('mockito-core', 'org.mockito', 'mockito-core').version('5.5.0')
+
+            // code quality
+            version('checkstyle', '10.12.4')
+            plugin('spotbugs', 'com.github.spotbugs').version('5.1.4')
+            plugin('errorprone', 'net.ltgt.errorprone').version('3.1.0')
+            plugin('owasp', 'org.owasp.dependencycheck').version('8.4.0')
+            library('error-prone-core', 'com.google.errorprone', 'error_prone_core').version('2.22.0')
+        }
+    }
+}

@@ -1,0 +1,37 @@
+plugins {
+    id 'java-library'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    withJavadocJar()
+    withSourcesJar()
+}
+
+dependencies {
+    api libs.ksi.api
+
+    implementation libs.jackson.databind
+    implementation libs.ksi.blocksigner
+
+    errorprone libs.error.prone.core
+}
+
+check {
+    dependsOn 'jacocoTestCoverageVerification'
+}
+
+testing {
+    suites {
+        test {
+            testType = TestSuiteType.UNIT_TEST
+            dependencies {
+                implementation libs.junit.jupiter.api
+                implementation libs.mockito.core
+                runtimeOnly libs.junit.jupiter.engine
+            }
+        }
+    }
+}

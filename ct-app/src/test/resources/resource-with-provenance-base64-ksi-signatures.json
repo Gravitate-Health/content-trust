@@ -1,0 +1,276 @@
+{
+  "resourceType": "Patient",
+  "id": "example",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\"><b>Jim </b> male, DoB: 1974-12-25 ( Medical record number: 12345 (use: USUAL, period: 2001-05-06 --&gt; (ongoing)))</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Record is active\">Active:</td><td>true</td><td style=\"background-color: #f3f5da\" title=\"Known status of Patient\">Deceased:</td><td colspan=\"3\">false</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Alternate names (see the one above)\">Alt Names:</td><td colspan=\"3\"><ul><li>Peter James Chalmers (OFFICIAL)</li><li>Peter James Windsor (MAIDEN)</li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Ways to contact the Patient\">Contact Details:</td><td colspan=\"3\"><ul><li>-unknown-(HOME)</li><li>ph: (03) 5555 6473(WORK)</li><li>ph: (03) 3410 5613(MOBILE)</li><li>ph: (03) 5555 8834(OLD)</li><li>534 Erewhon St PeasantVille, Rainbow, Vic  3999(HOME)</li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Nominated Contact: Next-of-Kin\">Next-of-Kin:</td><td colspan=\"3\"><ul><li>Bénédicte du Marché  (female)</li><li>534 Erewhon St PleasantVille Vic 3999 (HOME)</li><li><a href=\"tel:+33(237)998327\">+33 (237) 998327</a></li><li>Valid Period: 2012 --&gt; (ongoing)</li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Patient Links\">Links:</td><td colspan=\"3\"><ul><li>Managing Organization: <a href=\"organization-example-gastro.html\">Organization/1</a> &quot;Gastroenterology&quot;</li></ul></td></tr></table></div>"
+  },
+  "identifier": [
+    {
+      "use": "usual",
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "MR"
+          }
+        ]
+      },
+      "system": "urn:oid:1.2.36.146.595.217.0.1",
+      "value": "12345",
+      "period": {
+        "start": "2001-05-06"
+      },
+      "assigner": {
+        "display": "Acme Healthcare"
+      }
+    }
+  ],
+  "active": true,
+  "name": [
+    {
+      "use": "official",
+      "family": "Chalmers",
+      "given": [
+        "Peter",
+        "James"
+      ]
+    },
+    {
+      "use": "usual",
+      "given": [
+        "Jim"
+      ]
+    },
+    {
+      "use": "maiden",
+      "family": "Windsor",
+      "given": [
+        "Peter",
+        "James"
+      ],
+      "period": {
+        "end": "2002"
+      }
+    }
+  ],
+  "telecom": [
+    {
+      "use": "home"
+    },
+    {
+      "system": "phone",
+      "value": "(03) 5555 6473",
+      "use": "work",
+      "rank": 1
+    },
+    {
+      "system": "phone",
+      "value": "(03) 3410 5613",
+      "use": "mobile",
+      "rank": 2
+    },
+    {
+      "system": "phone",
+      "value": "(03) 5555 8834",
+      "use": "old",
+      "period": {
+        "end": "2014"
+      }
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1974-12-25",
+  "_birthDate": {
+    "extension": [
+      {
+        "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
+        "valueDateTime": "1974-12-25T14:35:45-05:00"
+      }
+    ]
+  },
+  "deceasedBoolean": false,
+  "address": [
+    {
+      "use": "home",
+      "type": "both",
+      "text": "534 Erewhon St PeasantVille, Rainbow, Vic  3999",
+      "line": [
+        "534 Erewhon St"
+      ],
+      "city": "PleasantVille",
+      "district": "Rainbow",
+      "state": "Vic",
+      "postalCode": "3999",
+      "period": {
+        "start": "1974-12-25"
+      }
+    }
+  ],
+  "contact": [
+    {
+      "relationship": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
+              "code": "N"
+            }
+          ]
+        }
+      ],
+      "name": {
+        "family": "du Marché",
+        "_family": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-prefix",
+              "valueString": "VV"
+            }
+          ]
+        },
+        "given": [
+          "Bénédicte"
+        ]
+      },
+      "telecom": [
+        {
+          "system": "phone",
+          "value": "+33 (237) 998327"
+        }
+      ],
+      "address": {
+        "use": "home",
+        "type": "both",
+        "line": [
+          "534 Erewhon St"
+        ],
+        "city": "PleasantVille",
+        "district": "Rainbow",
+        "state": "Vic",
+        "postalCode": "3999",
+        "period": {
+          "start": "1974-12-25"
+        }
+      },
+      "gender": "female",
+      "period": {
+        "start": "2012"
+      }
+    }
+  ],
+  "managingOrganization": {
+    "reference": "Organization/1"
+  },
+  "provenance": {
+    "resourceType": "Provenance",
+    "id": "example",
+    "text": {
+      "status": "generated",
+      "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from XDS managed CDA Referral received 26-June as authorized by a referenced Consent.</div>"
+    },
+    "target": [
+      {
+        "reference": "Procedure/example/_history/1"
+      }
+    ],
+    "occurredPeriod": {
+      "start": "2015-06-27",
+      "end": "2015-06-28"
+    },
+    "recorded": "2015-06-27T08:39:24+10:00",
+    "policy": [
+      "http://acme.com/fhir/Consent/25"
+    ],
+    "location": {
+      "reference": "Location/1"
+    },
+    "reason": [
+      {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "3457005",
+            "display": "Referral"
+          }
+        ]
+      }
+    ],
+    "agent": [
+      {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+              "code": "AUT"
+            }
+          ]
+        },
+        "who": {
+          "reference": "Practitioner/xcda-author"
+        }
+      },
+      {
+        "id": "a1",
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+              "code": "DEV"
+            }
+          ]
+        },
+        "who": {
+          "reference": "Device/software"
+        }
+      }
+    ],
+    "entity": [
+      {
+        "role": "source",
+        "what": {
+          "reference": "DocumentReference/example",
+          "display": "CDA Document in XDS repository"
+        }
+      }
+    ],
+    "signature": [
+      {
+        "type": [
+          {
+            "system": "Content-Trust",
+            "version": "1.0",
+            "code": "KSI",
+            "display": "KSI Signature",
+            "userSelected": false
+          }
+        ],
+        "when": "2023-10-09T19:56:09.001968Z",
+        "who": null,
+        "onBehalfOf": null,
+        "targetFormat": null,
+        "sigFormat": "https://guardtime.github.io/ksi-java-sdk/com/guardtime/ksi/unisignature/KSISignature.html",
+        "data": "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"
+      }
+    ]
+  },
+  "signature": [
+    {
+      "type": [
+        {
+          "system": "Content-Trust",
+          "version": "1.0",
+          "code": "KSI",
+          "display": "KSI Signature",
+          "userSelected": false
+        }
+      ],
+      "when": "2023-10-09T19:56:08.110963Z",
+      "who": null,
+      "onBehalfOf": null,
+      "targetFormat": null,
+      "sigFormat": "https://guardtime.github.io/ksi-java-sdk/com/guardtime/ksi/unisignature/KSISignature.html",
+      "data": "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"
+    }
+  ]
+}

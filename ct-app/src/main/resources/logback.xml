@@ -1,0 +1,48 @@
+<!--
+  ~ GUARDTIME CONFIDENTIAL
+  ~
+  ~ Copyright 2008-2023 Guardtime, Inc.
+  ~ All Rights Reserved.
+  ~
+  ~ All information contained herein is, and remains, the property
+  ~ of Guardtime, Inc. and its suppliers, if any.
+  ~ The intellectual and technical concepts contained herein are
+  ~ proprietary to Guardtime, Inc. and its suppliers and may be
+  ~ covered by U.S. and foreign patents and patents in process,
+  ~ and/or are protected by trade secret or copyright law.
+  ~ Dissemination of this information or reproduction of this material
+  ~ is strictly forbidden unless prior written permission is obtained
+  ~ from Guardtime, Inc.
+  ~ "Guardtime" and "KSI" are trademarks or registered trademarks of
+  ~ Guardtime, Inc., and no license to trademarks is granted; Guardtime
+  ~ reserves and retains all trademark rights.
+  -->
+
+<configuration>
+    <property name="PATTERN" value="%d{HH:mm:ss.SSSX} [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.guardtime.contenttrust" level="info"/>
+    <logger name="com.guardtime.ksi" level="warn"/>
+
+    <property name="LOG_FILE_NAME" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/contenttrust.log}"/>
+    <appender name="LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE_NAME}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE_NAME}.%d{yyyy-MM-dd}</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="LOG_FILE"/>
+    </root>
+</configuration>

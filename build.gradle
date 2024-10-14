@@ -1,0 +1,85 @@
+import com.github.spotbugs.snom.SpotBugsTask
+
+plugins {
+    alias(libs.plugins.spotbugs) apply false
+    alias(libs.plugins.errorprone) apply false
+    alias(libs.plugins.owasp) apply false
+}
+
+allprojects {
+    group 'com.guardtime.contenttrust'
+    version '0.1.0'
+}
+
+subprojects {
+    apply plugin: 'checkstyle'
+
+    repositories {
+        mavenCentral()
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+        options.compilerArgs.add('-Xlint:all')
+        options.compilerArgs.add('-Xlint:-processing')
+        options.compilerArgs.add('-Werror')
+    }
+
+    checkstyle {
+        toolVersion libs.versions.checkstyle.get()
+    }
+
+    configure(allprojects) {
+        apply plugin: 'jacoco'
+        apply plugin: 'jvm-test-suite'
+        apply plugin: libs.plugins.spotbugs.get().pluginId
+        apply plugin: libs.plugins.errorprone.get().pluginId
+        apply plugin: libs.plugins.owasp.get().pluginId
+
+        tasks.withType(JacocoCoverageVerification).configureEach {
+            outputs.upToDateWhen { true }
+            dependsOn jacocoTestReport
+            violationRules {
+                rule {
+                    element = 'CLASS'
+                    limit {
+                        counter = 'LINE'
+                        value = 'COVEREDRATIO'
+                        minimum = 0.7
+                    }
+                    excludes = [
+                            'com.guardtime.contenttrust.ContentTrustApplication',
+                            'com.guardtime.contenttrust.ksi.KsiConfiguration',
+                            'com.guardtime.contenttrust.security.SecurityConfig'
+                    ]
+                }
+                rule {
+                    element = 'CLASS'
+                    limit {
+                        counter = 'BRANCH'
+                        value = 'COVEREDRATIO'
+                        minimum = 0.7
+                    }
+                    excludes = [
+                            'com.guardtime.contenttrust.ContentTrustApplication',
+                            'com.guardtime.contenttrust.ksi.KsiConfiguration',
+                            'com.guardtime.contenttrust.security.SecurityConfig'
+                    ]
+                }
+            }
+        }
+
+        tasks.withType(Test).configureEach {
+            useJUnitPlatform()
+            finalizedBy jacocoTestReport
+        }
+
+        tasks.withType(SpotBugsTask).configureEach {
+            ignoreFailures = true
+            reports {
+                html.enabled = true
+                xml.enabled = true
+            }
+        }
+    }
+}
